@@ -1,0 +1,11 @@
+on:
+  push:
+
+jobs:
+  hello:
+    runs-on: ubuntu-22.04
+    container:
+      image: docker:23-dind
+    steps:
+      - name: hello
+        run: docker run hello-world

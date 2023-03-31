@@ -16,8 +16,8 @@ jobs:
       - uses: isbang/compose-action@v1.4.1
         with:
           compose-file: |
-            ./tests/functionnal/dependencies/docker-compose.yaml
-            ./tests/functionnal/dependencies/tester-compose.yaml
+            pwd/tests/functionnal/dependencies/docker-compose.yaml
+            pwd/tests/functionnal/dependencies/tester-compose.yaml
           down-flags: "-d"
       - run: npm ci
       - run: npm test

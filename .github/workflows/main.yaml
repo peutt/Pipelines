@@ -15,11 +15,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: isbang/compose-action@v1.4.1
         with:
-          compose-file: "./tests/functionnal/dependencies/docker-compose.yaml"
-          down-flags: "-d"
-      - uses: isbang/compose-action@v1.4.1
-        with:
-          compose-file: "./tests/functionnal/dependencies/tester-compose.yaml"
+          compose-file: |
+            ./tests/functionnal/dependencies/docker-compose.yaml
+            ./tests/functionnal/dependencies/tester-compose.yaml
           down-flags: "-d"
       - run: npm ci
       - run: npm test

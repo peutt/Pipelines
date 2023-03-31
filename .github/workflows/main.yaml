@@ -13,7 +13,7 @@ jobs:
       image: node:18-alpine
     steps:
       - uses: actions/checkout@v3
-      - run: npm ci
+      - run: npm install
       - run: npm test
-      - run: docker compose -f tests/functionnal/dependencies/docker-compose.yaml up -d
-      - run: docker compose -f tests/functionnal/dependencies/tester-compose.yaml up
+      - run: docker-compose -f tests/functionnal/dependencies/docker-compose.yaml up -d
+      - run: docker-compose -f tests/functionnal/dependencies/tester-compose.yaml up

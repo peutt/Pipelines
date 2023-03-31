@@ -25,5 +25,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: docker compose -f tests/integ/dependencies/docker-compose.yaml up -d
+      - run: docker compose -f tests/integ/docker-compose.yaml up -d
       - run: docker compose -f tests/integ/dependencies/tester-compose.yaml up

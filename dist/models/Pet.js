@@ -1,25 +1,48 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Errors_1 = require("../helpers/Errors");
 var Pet = /** @class */ (function () {
-    function Pet(name, kind, age) {
-        if (arguments.length < 3) {
-            throw new Errors_1.MissingDataError();
-        }
+    function Pet(vetId, name, kind, birthDate) {
+        this.vetId = vetId;
         this.name = name;
         this.kind = kind || "";
-        this.age = age || 0;
+        this.birthDate = birthDate;
     }
-    Pet.prototype.describe = function () {
-        return "".concat(this.name, ", ").concat(this.kind, ", ").concat(this.age, " years");
-    };
-    Pet.prototype.toJSON = function () {
-        var ret = {};
-        for (var _i = 0, _a = Object.keys(this); _i < _a.length; _i++) {
-            var prop = _a[_i];
-            ret[prop] = this[prop];
+    /**
+     * @returns Number the current pet's age calculated from its birthDate
+     */
+    Pet.prototype.getAge = function () {
+        var today = new Date();
+        var age = today.getFullYear() - this.birthDate.getFullYear();
+        var m = today.getMonth() - this.birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < this.birthDate.getDate())) {
+            age--;
         }
-        return ret;
+        return age;
+    };
+    /**
+     * @returns string `name (vetId): kind, age`
+     * @example "Pastèque (123456): dog, 2"
+     */
+    Pet.prototype.describe = function () {
+        return this.name + " (" + this.vetId + "): " + this.kind + ", " + this.getAge();
+    };
+    /**
+     *
+     * @returns a JSON representation of the current Pet
+     * @example
+     * ```json
+     * {
+     *    name: "Pastèque",
+     *    kind: "dog",
+     *    age: 2
+     * }
+     * ```
+     */ Pet.prototype.toJSON = function () {
+        return {
+            "name": this.name,
+            "kind": this.kind,
+            "age": this.getAge()
+        };
     };
     return Pet;
 }());

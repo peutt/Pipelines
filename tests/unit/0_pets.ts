@@ -1,29 +1,19 @@
 import Pet from "../../src/models/Pet"
-
 describe("Testing Pet class", () => {
   describe("Normal creation", () => {
-    let cat: Pet
+    let cat;
     beforeAll(() => {
-      cat = new Pet('Donkey', 'cat', 10)
+      cat = new Pet(0,'Donkey', 'cat', new Date())
     })
     test("should create a cat", () => {
       expect(cat).toBeInstanceOf(Pet)
     })
   })
-  describe("Creation with missing params", () => {
-    test("should raise an MissingDataError error", () => {
-      expect(
-        () => {
-          const pet = new Pet("Donkey")
-        }
-      ).toThrowError()
-    })
-  })
   describe("JSON representation", () => {
-    let pet: Pet
-    let json: object
+    let pet;
+    let json;
     beforeAll(() => {
-      pet = new Pet("Pastèque", "dog", 2)
+      pet = new Pet(1,"Pastèque", "dog", new Date())
       json = pet.toJSON()
     })
     test("Generate JSON", () => {

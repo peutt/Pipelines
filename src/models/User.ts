@@ -5,7 +5,7 @@ export default class User implements JSONable {
   id?: any
   firstname: string
   lastname: string
-  pets: Pet[]
+  pets: string[]
   constructor(firstname: string, lastname: string) {
     this.firstname = firstname
     this.lastname = lastname
@@ -16,15 +16,15 @@ export default class User implements JSONable {
    * @returns string `firstname lastname`
    */
   getFullname(): string {
-    throw new Error("Not implemented")
+    return this.firstname+" "+this.lastname
   }
 
   /**
    * Add a Pet in the user's Pets list
    * @param pet Pet to add to the list
    */
-  addPet(pet: Pet) {
-    throw new Error("Not implemented")
+  addPet(pet: string) {
+    this.pets.push(pet);
   }
 
   /**
@@ -44,9 +44,12 @@ export default class User implements JSONable {
    *      }
    *    ]
    * }
-   * ```
-   */
+   * ```*/
   toJSON(): object {
-    throw new Error("Not implemented")
+    return {
+      "firstname": this.firstname,
+      "lastname": this.lastname,
+      "pets": this.pets
+      };
   }
 }

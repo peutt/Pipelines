@@ -43,7 +43,9 @@ COPY ./tests/integ /app/tests/integ
 COPY ./tsconfig.json /app/tsconfig.json
 COPY ./jest.config.js /app/jest.config.js
 
+CMD [ "npm", "install" ]
 CMD [ "npm", "run", "test:integ" ]
+
 
 ## Testinteg: get only test integ files and, node modules from installer (with dev dep) and package.json and run the test integ command
 FROM node:18-alpine as testfunc

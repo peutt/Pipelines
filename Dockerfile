@@ -43,7 +43,7 @@ COPY ./tests/integ /app/tests/integ
 COPY ./tsconfig.json /app/tsconfig.json
 COPY ./jest.config.js /app/jest.config.js
 
-CMD [ "npm", "install" ]
+RUN npm install
 CMD [ "npm", "run", "test:integ" ]
 
 

@@ -8,13 +8,28 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     container:
       image: node:18-alpine
-
     steps:
       - uses: actions/checkout@v3
       - run: npm ci
       - run: npm test
+    container:
+    steps:
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./tests/functionnal/dependencies/docker-compose.yaml"
+          down-flags: "-d"
+      - uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./tests/functionnal/dependencies/tester-compose.yaml"
+          down-flags: "-d"
+    container:
+    steps:
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: "./tests/functionnal/dependencies/tester-compose.yaml"
+          down-flags: "-d"
